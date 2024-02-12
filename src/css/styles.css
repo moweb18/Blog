@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  input,
+  ::placeholder {
+    font-family: "Rubik", sans-serif;
+  }
+
+  @media (min-width: 1280px) {
+    html .container {
+      max-width: 1024px;
+    }
+  }
+}
