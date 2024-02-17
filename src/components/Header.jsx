@@ -102,7 +102,7 @@ const Header = () => {
                   className={`uppercase duration-75 ease-in hover:text-primary ${
                     location.pathname === path
                       ? "font-medium text-primary"
-                      : "text-slate-800 dark:text-white"
+                      : "text-slate-800 dark:text-white dark:hover:text-primary"
                   }`}
                 >
                   {label}
@@ -112,8 +112,8 @@ const Header = () => {
           })}
         </ul>
 
-        <div className="flex flex-col items-center  justify-center gap-5 lg:flex-row">
-          <div>
+        <div className="flex w-full flex-col items-center  justify-center gap-5 lg:flex-row">
+          <div className="lg:flex lg:w-full lg:justify-end lg:pr-8 xl:pr-24">
             <Link to={"/"} className="flex items-center justify-center gap-2">
               <img src={logo} alt="logo" width="50" height="50" />
               <span className="font-quicksand text-xl font-semibold text-primary">
@@ -126,7 +126,7 @@ const Header = () => {
               <form method="post">
                 <input
                   type="search"
-                  className={`w-full rounded-full border border-slate-500 px-4 py-2 text-slate-700 outline-none placeholder:text-gray-300 sm:min-w-64 lg:block ${searchInputActive ? "block opacity-100" : "pointer-events-none hidden opacity-0"}`}
+                  className={`w-full rounded-full border border-slate-500 px-4 py-2 text-slate-700 outline-none placeholder:text-gray-300 sm:min-w-72 lg:block ${searchInputActive ? "block opacity-100" : "pointer-events-none hidden opacity-0"}`}
                   placeholder={placeholder}
                   ref={searchInput}
                   value={search}
@@ -171,7 +171,7 @@ const Header = () => {
 
               {/* Popup Theme */}
               {isVisibleTheme && (
-                <div className="fixed top-20 z-10 min-w-36 rounded-md border border-slate-300 bg-white py-1 shadow-lg lg:-translate-x-28">
+                <div className="fixed top-44 z-10 min-w-36 -translate-x-12  rounded-md border border-slate-300 bg-white py-1 shadow-lg lg:top-20 lg:-translate-x-28">
                   <button
                     type="button"
                     className="flex w-full items-center gap-3 px-3 py-2 hover:bg-blue-50"
