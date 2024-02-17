@@ -1,3 +1,7 @@
-import Header from './Header';
+import Header from "./Header";
+import LatestPosts from "./LatestPosts";
+import Footer from "./Footer";
+import TopPosts from "./TopPosts";
+import FollowUs from "./FollowUs";
 
-export { Header };
+export { Header, LatestPosts, Footer, TopPosts, FollowUs };
