@@ -1,3 +1,4 @@
+import { useDebounce } from "use-debounce";
 import { Link, useLocation } from "react-router-dom";
 import logo from "/logo.png";
 import { useEffect, useRef, useState } from "react";
@@ -11,6 +12,9 @@ const Header = () => {
   const [placeholder, setPlaceholder] = useState("");
   const [isVisibleTheme, setIsVisibleTheme] = useState(false);
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
+  const [resultSearchArticle, setResultSearchArticle] = useState([]);
+  const [debouncedValue] = useDebounce(search, 500);
+  const [loadingSearch, setLoadingSearch] = useState(false);
 
   useEffect(() => {
     const placeholder = async () => {
@@ -50,6 +54,56 @@ const Header = () => {
     };
   }, [isVisibleTheme]);
 
+  // Search input
+  const nonActiveSearchInput = () => {
+    setSearch("");
+    setLoadingSearch(false);
+    setResultSearchArticle([]);
+    setSearchInputActive(false);
+    searchInput.current.blur();
+  };
+
+  useEffect(() => {
+    if (search.length > 0) {
+      const searchArticle = async () => {
+        const formdata = new FormData();
+        formdata.append("search", search);
+
+        const request = await fetch(`${URL_API}/search_like`, {
+          method: "POST",
+          body: formdata,
+        });
+        const response = await request.json();
+        setLoadingSearch(false);
+        setResultSearchArticle(response);
+      };
+
+      searchArticle();
+    }
+  }, [debouncedValue]);
+
+  useEffect(() => {
+    const handleBodyClick = (event) => {
+      const popupInput = document.getElementById("popup-input");
+      const form = document.querySelector("form");
+      if (popupInput) {
+        if (
+          !popupInput.contains(event.target) &&
+          !form.contains(event.target) &&
+          searchInput
+        ) {
+          nonActiveSearchInput();
+          return;
+        }
+      }
+    };
+
+    document.body.addEventListener("click", handleBodyClick);
+    return () => {
+      document.body.removeEventListener("click", handleBodyClick);
+    };
+  }, [searchInputActive]);
+
   const menuItems = [
     {
       path: "/",
@@ -70,7 +124,7 @@ const Header = () => {
       setSearchInputActive(true);
       searchInput.current.focus();
     } else {
-      setSearchInputActive(false);
+      nonActiveSearchInput();
     }
   };
 
@@ -86,6 +140,11 @@ const Header = () => {
     setTheme(theme);
     localStorage.setItem("theme", theme);
     setIsVisibleTheme(false);
+  };
+
+  const handleInputChange = ({ target }) => {
+    setLoadingSearch(true);
+    setSearch(target.value);
   };
 
   return (
@@ -123,15 +182,68 @@ const Header = () => {
           </div>
           <div className="flex items-center gap-5 lg:ml-auto">
             <div className="flex items-center gap-5">
-              <form method="post">
+              <form method="post" className="relative">
                 <input
                   type="search"
                   className={`w-full rounded-full border border-slate-500 px-4 py-2 text-slate-700 outline-none placeholder:text-gray-300 sm:min-w-72 lg:block ${searchInputActive ? "block opacity-100" : "pointer-events-none hidden opacity-0"}`}
                   placeholder={placeholder}
                   ref={searchInput}
                   value={search}
-                  onChange={(e) => setSearch(e.target.value)}
+                  onChange={handleInputChange}
                 />
+                {search.length > 0 && (
+                  <div
+                    className="absolute top-14 z-10 w-full rounded-md border border-slate-300 bg-white py-3 shadow-xl"
+                    id="popup-input"
+                  >
+                    {loadingSearch ? (
+                      <div className="flex animate-spin justify-center">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          width="28"
+                          height="28"
+                          fill="rgba(43,149,246,1)"
+                        >
+                          <path d="M18.364 5.63604L16.9497 7.05025C15.683 5.7835 13.933 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19C15.866 19 19 15.866 19 12H21C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C14.4853 3 16.7353 4.00736 18.364 5.63604Z"></path>
+                        </svg>
+                      </div>
+                    ) : resultSearchArticle.length > 0 ? (
+                      resultSearchArticle.map((result, index) => {
+                        const { judul, thumbs_img, username, id_artikel } =
+                          result;
+
+                        return (
+                          <article
+                            className="flex w-full cursor-pointer items-center gap-3 px-4 py-2 hover:bg-blue-50"
+                            key={index}
+                          >
+                            <Link
+                              className="flex items-center gap-3"
+                              title={judul}
+                              to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
+                              state={{ id_artikel }}
+                              onClick={nonActiveSearchInput}
+                            >
+                              <img
+                                src={thumbs_img}
+                                alt="img-top-post"
+                                className="h-10 w-10 object-cover"
+                              />
+                              <span className="line-clamp-1 text-sm font-medium text-slate-700">
+                                {judul}
+                              </span>
+                            </Link>
+                          </article>
+                        );
+                      })
+                    ) : (
+                      <p className="text-center text-sm text-slate-400">
+                        Artikel tidak ditemukan
+                      </p>
+                    )}
+                  </div>
+                )}
               </form>
               <button type="button" onClick={activeOrNonActiveSearch}>
                 <svg
