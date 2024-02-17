@@ -66,7 +66,7 @@ const LatestPosts = () => {
   return (
     <section className="xl:w-[768px] xl:border-r xl:border-slate-800  xl:dark:border-neutral-700">
       <h1 className="text-3xl font-semibold uppercase text-slate-900 dark:text-white md:text-4xl xl:pt-20 xl:text-5xl">
-        Our Latest Posts
+        Postingan Terbaru
       </h1>
 
       <article
@@ -93,6 +93,7 @@ const LatestPosts = () => {
               <Link
                 to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
                 className="block aspect-video flex-shrink-0 sm:h-24 sm:w-28"
+                state={{ id_artikel }}
               >
                 <img
                   src={thumbs_img}
@@ -106,6 +107,7 @@ const LatestPosts = () => {
                 <Link
                   to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
                   title={judul}
+                  state={{ id_artikel }}
                 >
                   <h5 className="line-clamp-2 text-lg font-medium text-slate-800 hover:underline dark:text-slate-300">
                     {judul}

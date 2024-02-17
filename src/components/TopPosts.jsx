@@ -30,7 +30,7 @@ const TopPost = () => {
     <section className="mt-10 border-t border-slate-200 pt-5 dark:border-neutral-700  xl:mt-0 xl:border-none xl:pl-8 xl:pt-20">
       <div className="xl:sticky xl:top-28">
         <h2 className="mb-5 text-xl font-semibold uppercase text-slate-900 dark:text-white md:text-2xl">
-          Top Posts
+          Postingan Teratas
         </h2>
         <article className="flex flex-col gap-6">
           {loading ? (
@@ -58,13 +58,14 @@ const TopPost = () => {
                     className="flex items-center gap-3"
                     title={judul}
                     to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
+                    state={{ id_artikel }}
                   >
                     <img
                       src={thumbs_img}
                       alt="img-top-post"
                       className="peer h-14 w-14 object-cover"
                     />
-                    <span className="truncate font-medium text-slate-800 hover:underline peer-hover:underline dark:text-slate-300 xl:max-w-60">
+                    <span className="line-clamp-1 font-medium text-slate-800 hover:underline peer-hover:underline dark:text-slate-300">
                       {judul}
                     </span>
                   </Link>

@@ -86,7 +86,7 @@ const FollowUs = () => {
   return (
     <div>
       <h2 className="mb-5 mt-6 text-xl font-semibold uppercase text-slate-900 dark:text-white md:text-2xl">
-        Follow Us
+        Ikuti Kami
       </h2>
 
       <ul className="flex flex-wrap gap-3">
