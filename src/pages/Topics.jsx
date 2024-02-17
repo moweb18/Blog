@@ -22,7 +22,7 @@ const Topics = () => {
     <section className="xl:flex">
       <div className="xl:w-[768px] xl:border-r xl:border-slate-800  xl:dark:border-neutral-700">
         <h1 className="text-3xl font-semibold uppercase text-slate-900 dark:text-white md:text-4xl xl:pr-6 xl:pt-20 xl:text-5xl">
-          Our Topics
+          Daftar Topik
         </h1>
 
         <div
