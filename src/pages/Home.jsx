@@ -1,8 +1,11 @@
+import { LatestPosts, TopPosts } from "../components";
+
 const Home = () => {
   return (
-    <>
-      <p className="mt-[200px]">This Home Screen</p>
-    </>
+    <section className="xl:flex">
+      <LatestPosts />
+      <TopPosts />
+    </section>
   );
 };
 export default Home;
