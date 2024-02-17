@@ -47,7 +47,7 @@ const TopPost = () => {
             </div>
           ) : (
             topPosts.map((topPost, index) => {
-              const { judul, thumbs_img, username, id_artikel } = topPost;
+              const { judul, thumbs_img, username } = topPost;
 
               return (
                 <article
