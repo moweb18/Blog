@@ -1,4 +1,4 @@
-const FollowUs = () => {
+const FollowUs = ({ marginTop = true }) => {
   const socialMedia = [
     {
       name: "Website",
@@ -85,7 +85,9 @@ const FollowUs = () => {
 
   return (
     <div>
-      <h2 className="mb-5 mt-6 text-xl font-semibold uppercase text-slate-900 dark:text-white md:text-2xl">
+      <h2
+        className={`mb-5 text-xl font-semibold uppercase text-slate-900 dark:text-white md:text-2xl ${marginTop ? "mt-6" : "0"}`}
+      >
         Ikuti Kami
       </h2>
 

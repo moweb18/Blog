@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { URL_API } from "../utils";
 import { Link } from "react-router-dom";
-import { TopPosts } from "../components";
+import { SEO, TopPosts } from "../components";
 
 const Topics = () => {
   const [categories, setCategories] = useState([]);
@@ -20,6 +20,7 @@ const Topics = () => {
 
   return (
     <section className="xl:flex">
+      <SEO title="Daftar Topik - Blog Modif Website" />
       <div className="xl:w-[768px] xl:border-r xl:border-slate-800  xl:dark:border-neutral-700">
         <h1 className="text-3xl font-semibold uppercase text-slate-900 dark:text-white md:text-4xl xl:pr-6 xl:pt-20 xl:text-5xl">
           Daftar Topik

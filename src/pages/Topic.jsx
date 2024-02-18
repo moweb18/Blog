@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { URL_API, convertDate } from "../utils";
+import { SEO } from "../components";
 
 const Topic = () => {
   const [articles, setArticles] = useState([]);
@@ -37,6 +38,7 @@ const Topic = () => {
 
   return (
     <section>
+      <SEO title={`Topik ${topic} - Blog Modif Website`} />
       <h1 className="text-center text-3xl font-semibold text-slate-900 dark:text-white md:text-4xl xl:pt-20 xl:text-5xl">
         {topic}
       </h1>
@@ -54,7 +56,7 @@ const Topic = () => {
           } = article;
 
           return (
-            <article className="md:w-80" key={id_artikel}>
+            <article className="w-full md:w-80" key={id_artikel}>
               <Link className="block aspect-video md:aspect-auto md:h-44">
                 <img
                   src={thumbs_img}
