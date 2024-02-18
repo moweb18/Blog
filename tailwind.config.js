@@ -10,6 +10,9 @@ export default {
       colors: {
         primary: "#2b95f6",
       },
+      backgroundImage: {
+        author: 'url("/bg-jumbotron.png")',
+      },
     },
   },
   plugins: [],
