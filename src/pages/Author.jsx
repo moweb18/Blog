@@ -190,7 +190,7 @@ const Author = () => {
               )}
             </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 xl:sticky xl:top-28 xl:h-96">
             <FollowUs marginTop={false} />
           </div>
         </>
