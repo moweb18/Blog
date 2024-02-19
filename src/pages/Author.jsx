@@ -69,7 +69,7 @@ const Author = () => {
   return (
     <section className="flex flex-col gap-8 xl:flex-row xl:gap-5 xl:pt-20">
       {author.message === "Not found" ? (
-        <p className="text-center text-slate-700 dark:text-slate-100">
+        <p className="w-full text-center text-slate-700 dark:text-slate-100">
           Penulis tidak ditemukan
         </p>
       ) : (

@@ -8,6 +8,8 @@ const Topics = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    window.scrollTo({ top: 0 });
+
     const dataCategory = async () => {
       const request = await fetch(`${URL_API}/our_topics`, { method: "POST" });
       const response = await request.json();

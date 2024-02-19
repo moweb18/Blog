@@ -2,8 +2,6 @@ import { Footer, Header } from "./components";
 
 // eslint-disable-next-line react/prop-types
 const App = ({ children }) => {
-  window.scrollTo({ top: 0 });
-
   return (
     <>
       <Header />
