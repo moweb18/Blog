@@ -1,6 +1,6 @@
 export const URL_API = "https://dashboard.modifwebsite.id/api";
 
-export const convertDate = (date) => {
+export const convertDate = (date, isThreeMonthLetters = true) => {
   const dateParts = date.split(" ");
   const datePart = dateParts[0];
   const dateSplit = datePart.split("-");
@@ -9,21 +9,25 @@ export const convertDate = (date) => {
   const day = parseInt(dateSplit[2]);
 
   const monthNames = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "February",
+    "March",
+    "April",
     "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
 
-  return day + " " + monthNames[month - 1] + " " + year;
+  if (isThreeMonthLetters) {
+    return day + " " + monthNames[month - 1].substring(0, 3) + " " + year;
+  } else {
+    return day + " " + monthNames[month - 1] + " " + year;
+  }
 };
 
 export const shareArticle = (socialMediaName) => {

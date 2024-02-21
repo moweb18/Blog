@@ -3,7 +3,7 @@ import FollowUs from "./FollowUs";
 import { useEffect, useState } from "react";
 import { URL_API } from "../utils";
 
-const TopPost = () => {
+const TopPost = ({ paddingTop = true }) => {
   const [topPosts, setTopPosts] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -27,7 +27,9 @@ const TopPost = () => {
   }, [topPosts, loading]);
 
   return (
-    <section className="mt-10 border-t border-slate-200 pt-5 dark:border-neutral-700  xl:mt-0 xl:border-none xl:pl-8 xl:pt-20">
+    <section
+      className={`mt-10 border-t border-slate-200 pt-5 dark:border-neutral-700  xl:mt-0 xl:border-none xl:pl-8 ${paddingTop ? "xl:pt-20" : "pt-0"}`}
+    >
       <div className="xl:sticky xl:top-28">
         <h2 className="mb-5 text-xl font-semibold uppercase text-slate-900 dark:text-white md:text-2xl">
           Postingan Teratas
@@ -58,7 +60,7 @@ const TopPost = () => {
                     className="flex items-center gap-3"
                     title={judul}
                     to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
-                    state={{ id_artikel }}
+                    state={{ id_artikel, username }}
                   >
                     <img
                       src={thumbs_img}

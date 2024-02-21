@@ -69,7 +69,7 @@ const Author = () => {
   return (
     <section className="flex flex-col gap-8 xl:flex-row xl:gap-5 xl:pt-20">
       {author.message === "Not found" ? (
-        <p className="text-center text-slate-700 dark:text-slate-100">
+        <p className="w-full text-center text-slate-700 dark:text-slate-100">
           Penulis tidak ditemukan
         </p>
       ) : (
@@ -81,7 +81,7 @@ const Author = () => {
           />
           <ShareSocialMedia />
           <div className="flex-grow">
-            <div className="bg-author relative flex items-center justify-center rounded-md bg-cover px-4 py-8 text-center after:absolute after:inset-0 after:rounded-md after:bg-gradient-to-b after:from-[#0495EC] after:to-[#0D64C7] after:opacity-95">
+            <div className="relative flex items-center justify-center rounded-md bg-author bg-cover px-4 py-8 text-center after:absolute after:inset-0 after:rounded-md after:bg-gradient-to-b after:from-[#0495EC] after:to-[#0D64C7] after:opacity-95">
               <div className="relative z-10 flex flex-col items-center justify-center">
                 <img
                   src={author.admin_img}
@@ -118,6 +118,7 @@ const Author = () => {
                         <Link
                           to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
                           className="block aspect-video flex-shrink-0 sm:h-24 sm:w-28"
+                          state={{ id_artikel, username }}
                         >
                           <img
                             src={thumbs_img}
@@ -131,6 +132,7 @@ const Author = () => {
                           <Link
                             to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
                             title={judul}
+                            state={{ id_artikel }}
                           >
                             <h5 className="line-clamp-2 text-lg font-medium text-slate-800 hover:underline dark:text-slate-300">
                               {judul}
@@ -190,7 +192,7 @@ const Author = () => {
               )}
             </div>
           </div>
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 xl:sticky xl:top-28 xl:h-96">
             <FollowUs marginTop={false} />
           </div>
         </>
