@@ -222,7 +222,7 @@ const Header = () => {
                               className="flex items-center gap-3"
                               title={judul}
                               to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
-                              state={{ id_artikel }}
+                              state={{ id_artikel, username }}
                               onClick={nonActiveSearchInput}
                             >
                               <img

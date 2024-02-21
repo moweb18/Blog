@@ -93,7 +93,7 @@ const LatestPosts = () => {
               <Link
                 to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
                 className="block aspect-video flex-shrink-0 sm:h-24 sm:w-28"
-                state={{ id_artikel }}
+                state={{ id_artikel, username }}
               >
                 <img
                   src={thumbs_img}
@@ -107,7 +107,7 @@ const LatestPosts = () => {
                 <Link
                   to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
                   title={judul}
-                  state={{ id_artikel }}
+                  state={{ id_artikel, username }}
                 >
                   <h5 className="line-clamp-2 text-lg font-medium text-slate-800 hover:underline dark:text-slate-300">
                     {judul}
