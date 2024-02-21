@@ -11,7 +11,6 @@ const PaginateArticle = ({
   const handlePageChange = ({ selected }) => {
     const page = selected + 1;
     setCurrentPage(page);
-    history.pushState(null, null, `?page=${page}`);
   };
 
   return (
