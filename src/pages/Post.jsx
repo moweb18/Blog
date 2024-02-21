@@ -44,7 +44,7 @@ const Post = () => {
   return (
     <section className="flex flex-col gap-8 xl:flex-row xl:gap-5 xl:pt-20">
       <SEO
-        title={`${contentArticle.judul} - Blog Modif Website`}
+        title={`${contentArticle.judul} - ${contentArticle.nama_lengkap}`}
         author={contentArticle.nama_lengkap}
         description={`${contentArticle.nama_kategori} - ${description}`}
         img={contentArticle.original_img}
