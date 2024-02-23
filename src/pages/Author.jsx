@@ -7,6 +7,7 @@ import {
 } from "../components";
 import { useEffect, useState } from "react";
 import { URL_API, convertDate } from "../utils";
+import BlankProfile from "/blank_profile.webp";
 
 const Author = () => {
   const params = useParams();
@@ -16,8 +17,7 @@ const Author = () => {
     : 1;
   const { name } = params;
   const [author, setAuthor] = useState({
-    admin_img:
-      "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+    admin_img: BlankProfile,
     nama_lengkap: "-",
     role_name: "-",
     username: "-",
@@ -115,10 +115,9 @@ const Author = () => {
                         className="flex flex-col gap-5 sm:w-full sm:flex-row xl:pr-6"
                         key={id_artikel}
                       >
-                        <Link
-                          to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
+                        <a
+                          href={`/post/${username}/${id_artikel}/${judul.toLowerCase().split(" ").join("-")}`}
                           className="block aspect-video flex-shrink-0 sm:h-24 sm:w-28"
-                          state={{ id_artikel, username }}
                         >
                           <img
                             src={thumbs_img}
@@ -127,17 +126,16 @@ const Author = () => {
                             className="h-full w-full object-cover hover:opacity-85"
                             loading="lazy"
                           />
-                        </Link>
+                        </a>
                         <div className="w-full">
-                          <Link
-                            to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
+                          <a
+                            href={`/post/${username}/${id_artikel}/${judul.toLowerCase().split(" ").join("-")}`}
                             title={judul}
-                            state={{ id_artikel }}
                           >
                             <h5 className="line-clamp-2 text-lg font-medium text-slate-800 hover:underline dark:text-slate-300">
                               {judul}
                             </h5>
-                          </Link>
+                          </a>
                           <div
                             className="mt-1 line-clamp-2 text-sm text-slate-600 dark:text-slate-400 sm:line-clamp-3"
                             dangerouslySetInnerHTML={{
