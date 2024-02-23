@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { URL_API, convertDate } from "../utils";
 import { SEO } from "../components";
 
@@ -10,9 +10,7 @@ const Topic = () => {
   const [totalPage, setTotalPage] = useState(0);
 
   const params = useParams();
-  const location = useLocation();
-  const { topic } = params;
-  const { id_kategori } = location.state;
+  const { id: id_kategori, topic } = params;
 
   useEffect(() => {
     const dataArticle = async () => {
@@ -57,7 +55,10 @@ const Topic = () => {
 
           return (
             <article className="w-full md:w-80" key={id_artikel}>
-              <Link className="block aspect-video md:aspect-auto md:h-44">
+              <a
+                href={`/post/${username}/${id_artikel}/${judul.toLowerCase().split(" ").join("-")}`}
+                className="block aspect-video md:aspect-auto md:h-44"
+              >
                 <img
                   src={thumbs_img}
                   alt="img-post"
@@ -65,16 +66,19 @@ const Topic = () => {
                   loading="lazy"
                   className="h-full w-full object-cover"
                 />
-              </Link>
+              </a>
               <div className="mt-5">
-                <Link>
+                <a
+                  href={`/post/${username}/${id_artikel}/${judul.toLowerCase().split(" ").join("-")}`}
+                  title={judul}
+                >
                   <h5
                     className="line-clamp-2 text-lg font-medium text-slate-800 hover:underline dark:text-slate-300"
                     title={judul}
                   >
                     {judul}
                   </h5>
-                </Link>
+                </a>
                 <div
                   className="mt-1 line-clamp-2 text-sm text-slate-600 dark:text-slate-400 sm:line-clamp-3"
                   dangerouslySetInnerHTML={{ __html: isi }}

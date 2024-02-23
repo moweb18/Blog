@@ -90,10 +90,10 @@ const LatestPosts = () => {
               key={id_artikel}
               className="flex flex-col gap-5 border-t border-slate-800 pt-8 dark:border-neutral-700 sm:w-full sm:flex-row xl:pr-6"
             >
-              <Link
-                to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
+              <a
+                href={`/post/${username}/${id_artikel}/${judul.toLowerCase().split(" ").join("-")}`}
+                title={judul}
                 className="block aspect-video flex-shrink-0 sm:h-24 sm:w-28"
-                state={{ id_artikel, username }}
               >
                 <img
                   src={thumbs_img}
@@ -102,17 +102,16 @@ const LatestPosts = () => {
                   className="h-full w-full object-cover hover:opacity-85"
                   loading="lazy"
                 />
-              </Link>
+              </a>
               <div className="w-full">
-                <Link
-                  to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
+                <a
+                  href={`/post/${username}/${id_artikel}/${judul.toLowerCase().split(" ").join("-")}`}
                   title={judul}
-                  state={{ id_artikel, username }}
                 >
                   <h5 className="line-clamp-2 text-lg font-medium text-slate-800 hover:underline dark:text-slate-300">
                     {judul}
                   </h5>
-                </Link>
+                </a>
                 <div
                   className="mt-1 line-clamp-2 text-sm text-slate-600 dark:text-slate-400 sm:line-clamp-3"
                   dangerouslySetInnerHTML={{ __html: isi }}
@@ -141,13 +140,12 @@ const LatestPosts = () => {
                     </time>
                   </div>
 
-                  <Link
-                    to={`/topic/${nama_kategori}`}
-                    state={{ id_kategori }}
+                  <a
+                    href={`/topic/${id_kategori}/${nama_kategori}`}
                     className="rounded-full bg-slate-100 px-2 py-1 text-sm text-slate-600 duration-100 ease-in hover:opacity-85"
                   >
                     {nama_kategori}
-                  </Link>
+                  </a>
                 </div>
               </div>
             </article>

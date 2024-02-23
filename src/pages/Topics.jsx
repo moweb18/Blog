@@ -34,14 +34,13 @@ const Topics = () => {
           {categories.map((category) => {
             const { id_kategori, nama_kategori } = category;
             return (
-              <Link
-                to={{ pathname: `/topic/${nama_kategori}` }}
-                state={{ id_kategori }}
+              <a
+                href={`/topic/${id_kategori}/${nama_kategori}`}
                 className="w-max rounded-md border border-primary px-4 py-2 font-medium text-primary duration-100 ease-in hover:bg-primary hover:text-white"
                 key={id_kategori}
               >
                 {nama_kategori}
-              </Link>
+              </a>
             );
           })}
         </div>

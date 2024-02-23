@@ -1,16 +1,23 @@
-import { Link } from "react-router-dom";
 import FollowUs from "./FollowUs";
 import { useEffect, useState } from "react";
 import { URL_API } from "../utils";
+import { useParams } from "react-router-dom";
 
 const TopPost = ({ paddingTop = true }) => {
   const [topPosts, setTopPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const params = useParams();
 
   useEffect(() => {
     const fetchDataArticle = async () => {
+      const formdata = new FormData();
+      if (params.id) {
+        formdata.append("except_id", params.id);
+      }
+
       const request = await fetch(`${URL_API}/top_posts`, {
         method: "POST",
+        body: formdata,
       });
       const response = await request.json();
       const result = response;
@@ -18,7 +25,7 @@ const TopPost = ({ paddingTop = true }) => {
     };
 
     fetchDataArticle();
-  }, []);
+  }, [location]);
 
   useEffect(() => {
     if (topPosts.length > 0) {
@@ -28,7 +35,7 @@ const TopPost = ({ paddingTop = true }) => {
 
   return (
     <section
-      className={`mt-10 border-t border-slate-200 pt-5 dark:border-neutral-700  xl:mt-0 xl:border-none xl:pl-8 ${paddingTop ? "xl:pt-20" : "pt-0"}`}
+      className={`mt-10 border-t border-slate-200 pt-5 dark:border-neutral-700  xl:mt-0 xl:border-none xl:pl-8 ${paddingTop ? "xl:pt-20" : "xl:pt-0"}`}
     >
       <div className="xl:sticky xl:top-28">
         <h2 className="mb-5 text-xl font-semibold uppercase text-slate-900 dark:text-white md:text-2xl">
@@ -56,11 +63,10 @@ const TopPost = ({ paddingTop = true }) => {
                   className="border-b border-slate-400 pb-6 dark:border-neutral-700"
                   key={index}
                 >
-                  <Link
-                    className="flex items-center gap-3"
+                  <a
+                    className="flex items-center gap-3 hover:underline"
                     title={judul}
-                    to={`/post/${username}/${judul.toLowerCase().split(" ").join("-")}`}
-                    state={{ id_artikel, username }}
+                    href={`/post/${username}/${id_artikel}/${judul.toLowerCase().split(" ").join("-")}`}
                   >
                     <img
                       src={thumbs_img}
@@ -70,7 +76,7 @@ const TopPost = ({ paddingTop = true }) => {
                     <span className="line-clamp-1 font-medium text-slate-800 hover:underline peer-hover:underline dark:text-slate-300">
                       {judul}
                     </span>
-                  </Link>
+                  </a>
                 </article>
               );
             })
