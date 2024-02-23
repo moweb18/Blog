@@ -6,6 +6,7 @@ import FollowUs from "./FollowUs";
 import ShareSocialMedia from "./ShareSocialMedia";
 import SEO from "./SEO";
 import PaginateArticle from "./PaginateArticle";
+import NotFound from "./NotFound";
 
 export {
   Header,
@@ -16,4 +17,5 @@ export {
   ShareSocialMedia,
   SEO,
   PaginateArticle,
+  NotFound,
 };
